@@ -1,14 +1,12 @@
-# YuzhaLab Home Assistant Aquarium System
+# YuzhaLab Aquarium System  @Home Assistant
 
-Welcome to the YuzhaLab Home Assistant Aquarium System repository! This project provides software and configuration code to automate and manage an aquarium using Home Assistant. Our goal is to create an intelligent, automated, and user-friendly aquarium system.
+Welcome to the YuzhaLab Aquarium System repository! This project provides software and configuration code to automate and manage an aquarium using Home Assistant. Our goal is to create an intelligent, automated, and user-friendly aquarium system.
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -29,37 +27,9 @@ This repository contains the necessary software and configurations to build and 
 ### Prerequisites
 
 - Home Assistant installed and running
+- ESPHome need installed and running
 - Required hardware sensors and actuators (listed in the documentation)
-- Git installed on your system
 
-### Steps
-
-1. Clone this repository:
-    ```bash
-    git clone https://github.com/YuzhaLab/home-assistant-aquarium.git
-    ```
-
-2. Navigate to the repository directory:
-    ```bash
-    cd home-assistant-aquarium
-    ```
-
-3. Follow the detailed installation instructions in the [documentation](docs/installation.md) to set up the hardware and integrate it with Home Assistant.
-
-## Configuration
-
-1. Copy the configuration files to your Home Assistant configuration directory:
-    ```bash
-    cp -r config/* /path/to/home-assistant/config/
-    ```
-
-2. Customize the configuration files according to your aquarium setup. Refer to the [configuration guide](docs/configuration.md) for detailed instructions.
-
-## Usage
-
-Once the installation and configuration are complete, you can start using the aquarium system through the Home Assistant dashboard. The dashboard allows you to monitor the aquarium conditions, control lighting and feeding, and receive alerts.
-
-For more detailed usage instructions, refer to the [usage guide](docs/usage.md).
 
 ## Contributing
 
