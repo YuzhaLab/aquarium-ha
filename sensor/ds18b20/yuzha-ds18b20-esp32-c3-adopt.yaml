@@ -1,0 +1,35 @@
+esphome:
+  name: "yuzha-ds18b20"
+  friendly_name: "Yuzha DS18B20 Temperature Sensor"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+    
+# Configure Dallas temperature sensor
+one_wire:
+  - platform: gpio
+    pin: GPIO0
+  
+sensor:
+  - platform: dallas_temp
+    accuracy_decimals: 1
+    name: "Fish Tank Temperature"
