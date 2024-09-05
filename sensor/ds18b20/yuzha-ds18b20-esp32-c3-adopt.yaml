@@ -1,6 +1,9 @@
 esphome:
   name: "yuzha-ds18b20"
   friendly_name: "Yuzha DS18B20 Temperature Sensor"
+  project:
+    name: yuzha-ds18b20
+    version: "0.9.1"
 
 esp32:
   board: esp32-c3-devkitm-1
