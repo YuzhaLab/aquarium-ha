@@ -5,7 +5,7 @@ esphome:
 esp32:
   board: esp32-c3-devkitm-1
   framework:
-    type: arduino
+    type: esp-idf
 
 # Enable logging
 logger:
@@ -15,7 +15,6 @@ api:
 
 ota:
   - platform: esphome
-    password: "6ca8a50a21b04094763b6724fa896820"
 
 wifi:
 
