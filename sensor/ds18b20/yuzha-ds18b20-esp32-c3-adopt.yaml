@@ -4,7 +4,7 @@ esphome:
   platformio_options: 
     board_build.flash_mode: dio
   project:
-    name: yuzha-ds18b20
+    name: yuzha.ds18b20
     version: "0.9.1"
 
 esp32:
