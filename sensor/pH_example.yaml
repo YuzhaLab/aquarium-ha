@@ -1,0 +1,50 @@
+
+esphome:
+  name: "yuzha-ph"
+  friendly_name: "Yuzha pH Sensor"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.pH
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+    
+# Configure Dallas temperature sensor
+i2c:
+  sda: 5
+  scl: 6
+
+ads1115:
+  - address: 0x48
+
+sensor:
+  - platform: ads1115
+    multiplexer: 'A0_GND'
+    gain: 6.144
+    name: "pH"
+    accuracy_decimals: 2
+    filters:
+        - calibrate_linear:
+          - 1.48 -> 6.86
+          - 0.95 -> 9.18 
