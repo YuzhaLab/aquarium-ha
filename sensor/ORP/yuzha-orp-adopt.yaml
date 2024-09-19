@@ -1,0 +1,50 @@
+
+esphome:
+  name: "yuzha-orp"
+  friendly_name: "Yuzha ORP Sensor"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.orp
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+    
+# Configure Dallas temperature sensor
+i2c:
+  sda: 5
+  scl: 6
+
+ads1115:
+  - address: 0x48
+
+sensor:
+  - platform: ads1115
+    multiplexer: 'A0_GND'
+    gain: 6.144
+    name: "ORP"
+    accuracy_decimals: 3
+    filters:
+        - calibrate_linear:
+          - 1.647 -> 0.086
+          - 2.127 -> 0.220
