@@ -1,0 +1,46 @@
+
+esphome:
+  name: "yuzha-humidity"
+  friendly_name: "Yuzha Humidity Temp Sensor"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.humidity
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+    
+# Configure Dallas temperature sensor
+i2c:
+  - id: bus_a
+    sda: 1
+    scl: 2
+    scan: true
+
+sensor:
+  - platform: sht3xd
+    temperature:
+      name: "Temperature"
+    humidity:
+      name: "Humidity"
+    address: 0x44
