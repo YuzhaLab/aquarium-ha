@@ -30,7 +30,7 @@ wifi:
 
 captive_portal:
     
-# Configure Dallas temperature sensor
+
 i2c:
   sda: 5
   scl: 6

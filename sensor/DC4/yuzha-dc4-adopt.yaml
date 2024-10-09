@@ -1,0 +1,74 @@
+esphome:
+  name: "yuzha-dc4"
+  friendly_name: "Yuzha DC4 Power Strip"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.dc4
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+
+switch:
+  - platform: gpio
+    pin: 4
+    id: sw1
+    name: "SW1"
+    restore_mode: RESTORE_DEFAULT_OFF
+
+  - platform: gpio
+    pin: 5
+    id: sw2
+    name: "SW2"
+    restore_mode: RESTORE_DEFAULT_OFF
+
+  - platform: gpio
+    pin: 6
+    id: sw3
+    name: "SW3"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    pin: 7
+    id: sw4
+    name: "SW4"
+    restore_mode: RESTORE_DEFAULT_OFF
+
+binary_sensor:
+  - platform: gpio
+    pin: 21
+    name: "powerBtn"
+    on_press:
+      then:
+        - lambda: |-
+            if (id(sw1).state || id(sw2).state || id(sw3).state || id(sw4).state) {
+              id(sw1).turn_off();
+              id(sw2).turn_off();
+              id(sw3).turn_off();
+              id(sw4).turn_off();
+            } else {
+              id(sw1).turn_on();
+              id(sw2).turn_on();
+              id(sw3).turn_on();
+              id(sw4).turn_on();
+            }
+    
