@@ -1,0 +1,48 @@
+esphome:
+  name: "yuzha-liquidlevel4"
+  friendly_name: "Yuzha liquidlevel4 Sensor"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.liquidlevel4
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+
+sensor:
+  - platform: pulse_meter
+    pin: 4
+    name: "liquidlevel-fourpoint"
+    unit_of_measurement: "Level"
+    filters:
+      - lambda: !lambda |-
+          if (x < 2000.0) return 0.0;
+          if (x < 4000.0) return 1.0;
+          if (x < 8000.0) return 2.0;
+          if (x < 13000.0) return 3.0;
+          return 4.0;
+      - round: 1
+      - or:
+        - delta: 0.9
+        - throttle: 20s 
+    
