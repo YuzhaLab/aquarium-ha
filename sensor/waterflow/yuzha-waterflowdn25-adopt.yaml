@@ -1,0 +1,42 @@
+esphome:
+  name: "yuzha-waterflowdn25"
+  friendly_name: "Yuzha WaterFlow DN25"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.waterflow
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+    
+sensor:
+  - platform: pulse_meter
+    name: 'Water Flow '
+    id: sensor_pulse_meter
+    unit_of_measurement: 'L/m'
+    state_class: measurement
+    accuracy_decimals: 2
+    pin: GPIO8
+    filters:
+      - multiply: 0.015432 # 64.8 pulses per liter of water
+      - throttle_average: 10s
