@@ -1,0 +1,41 @@
+
+esphome:
+  name: "yuzha-ds18b20temp"
+  friendly_name: "Yuzha DS18B20 Temp Sensor"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.ds18b20temp
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+    
+
+one_wire:
+  - platform: gpio
+    pin: GPIO0
+  
+sensor:
+  - platform: dallas_temp
+    accuracy_decimals: 1
+    name: "Temperature"
