@@ -1,0 +1,45 @@
+esphome:
+  name: "yuzha-pt1000temp"
+  friendly_name: "Yuzha PT1000 Temp Sensor"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.pt1000temp
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+    
+# Example configuration entry
+spi:
+  miso_pin: GPIO2
+  mosi_pin: GPIO7
+  clk_pin: GPIO6
+
+sensor:
+  - platform: max31865
+    name: "PT1000 Temperature"
+    cs_pin: GPIO8
+    rtd_wires: 2
+    update_interval: 30s
+    reference_resistance: 4300 Ω
+    rtd_nominal_resistance: 1000 Ω
