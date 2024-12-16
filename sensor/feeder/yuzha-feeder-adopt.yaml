@@ -1,0 +1,53 @@
+
+esphome:
+  name: "yuzha-feeder"
+  friendly_name: "Yuzha Feeder"
+  platformio_options: 
+    board_build.flash_mode: dio
+  project:
+    name: yuzha.feeder
+    version: "1.0"
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  - platform: esphome
+
+wifi:
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    password: "yuzha2024"
+
+captive_portal:
+    
+switch:
+  - platform: gpio
+    pin:
+      number: 5
+    id: sw1
+    name: "switch"
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO6
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "click"
+    on_press:
+      then:
+        - switch.turn_off: sw1
+    filters:
+      - delayed_on: 500ms
